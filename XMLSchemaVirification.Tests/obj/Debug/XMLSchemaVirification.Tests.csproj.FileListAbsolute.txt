@@ -1,0 +1,8 @@
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVirification.Tests\bin\Debug\XMLSchemaVirification.Tests.dll
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVirification.Tests\bin\Debug\XMLSchemaVirification.Tests.pdb
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVirification.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVirification.Tests\obj\Debug\XMLSchemaVirification.Tests.dll
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVirification.Tests\obj\Debug\XMLSchemaVirification.Tests.pdb
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVirification.Tests\bin\Debug\XMLSchemaVerification.dll
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVirification.Tests\bin\Debug\XMLSchemaVerification.pdb
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVirification.Tests\obj\Debug\XMLSchemaVirification.Tests.csprojResolveAssemblyReference.cache
