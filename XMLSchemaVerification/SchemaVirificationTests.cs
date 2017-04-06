@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Xml.Schema;
 
 namespace XMLSchemaVerification
 {
@@ -10,7 +11,31 @@ namespace XMLSchemaVerification
         public void TestValidSchema_AreCorrectResults()
         {
             BooksSchemaVerification sv = new BooksSchemaVerification();
-            sv.Check();
+            sv.Check("Content\\Books.xml");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(XmlSchemaValidationException))]
+        public void TestIValidSchema_IfWrongDate_IsExceptionThrowing()
+        {
+            BooksSchemaVerification sv = new BooksSchemaVerification();
+            sv.Check("Content\\Books_wrongDate.xml");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(XmlSchemaValidationException))]
+        public void TestIValidSchema_IfWrongGenre_IsExceptionThrowing()
+        {
+            BooksSchemaVerification sv = new BooksSchemaVerification();
+            sv.Check("Content\\Books_wrongGenre.xml");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(XmlSchemaValidationException))]
+        public void TestIValidSchema_IfWrongIsbn_IsExceptionThrowing()
+        {
+            BooksSchemaVerification sv = new BooksSchemaVerification();
+            sv.Check("Content\\Books_wrongIsbn.xml");
         }
     }
 }

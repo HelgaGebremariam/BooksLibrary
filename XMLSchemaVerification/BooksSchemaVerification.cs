@@ -19,16 +19,16 @@ namespace XMLSchemaVerification
             settings.ValidationEventHandler +=
                 delegate (object sender, ValidationEventArgs e)
                 {
-                    throw new Exception(string.Format("[{0}:{1}] {2}", e.Exception.LineNumber, e.Exception.LinePosition, e.Message));
+                    throw new XmlSchemaValidationException(string.Format("[{0}:{1}] {2}", e.Exception.LineNumber, e.Exception.LinePosition, e.Message));
                 };
 
             settings.ValidationFlags = settings.ValidationFlags | XmlSchemaValidationFlags.ReportValidationWarnings;
             settings.ValidationType = ValidationType.Schema;
         }
 
-        public void Check()
+        public void Check(string docPath)
         {
-            XmlReader reader = XmlReader.Create("books.xml", settings);
+            XmlReader reader = XmlReader.Create(docPath, settings);
            
             while (reader.Read())
             {

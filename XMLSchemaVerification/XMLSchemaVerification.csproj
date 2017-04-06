@@ -51,14 +51,23 @@
     <Compile Include="SchemaVirificationTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Books.xml">
-		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Books.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Books_wrongDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+    <Content Include="Content\Books_wrongGenre.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+    <Content Include="Content\Books_wrongIsbn.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Books.xsd">
       <SubType>Designer</SubType>
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
