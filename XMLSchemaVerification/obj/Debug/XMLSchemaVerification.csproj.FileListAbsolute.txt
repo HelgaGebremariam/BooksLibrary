@@ -1,5 +1,9 @@
 F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\XMLSchemaVerification.dll
 F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\XMLSchemaVerification.pdb
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Microsoft.UnitTestFramework.Extensions.dll
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Microsoft.UnitTestFramework.Extensions.xml
 F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\obj\Debug\XMLSchemaVerification.dll
 F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\obj\Debug\XMLSchemaVerification.pdb
-F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\obj\Debug\XMLSchemaVerification.csprojResolveAssemblyReference.cache
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Books.xml
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Books.xsd

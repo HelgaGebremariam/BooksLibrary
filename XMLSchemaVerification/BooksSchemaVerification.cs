@@ -15,11 +15,11 @@ namespace XMLSchemaVerification
         {
             settings = new XmlReaderSettings();
 
-            settings.Schemas.Add("http://library.by/catalog", "Books.xsd");
+            settings.Schemas.Add("http://library.by/catalog", "books.xsd");
             settings.ValidationEventHandler +=
                 delegate (object sender, ValidationEventArgs e)
                 {
-                    Console.WriteLine("[{0}:{1}] {2}", e.Exception.LineNumber, e.Exception.LinePosition, e.Message);
+                    throw new Exception(string.Format("[{0}:{1}] {2}", e.Exception.LineNumber, e.Exception.LinePosition, e.Message));
                 };
 
             settings.ValidationFlags = settings.ValidationFlags | XmlSchemaValidationFlags.ReportValidationWarnings;
@@ -28,7 +28,7 @@ namespace XMLSchemaVerification
 
         public void Check()
         {
-            XmlReader reader = XmlReader.Create("F:\\books.xml", settings);
+            XmlReader reader = XmlReader.Create("books.xml", settings);
            
             while (reader.Read())
             {

@@ -1,8 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using XMLSchemaVerification;
 
-namespace XMLSchemaVirification.Tests
+namespace XMLSchemaVerification
 {
     [TestClass]
     public class SchemaVirificationTests

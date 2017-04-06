@@ -18,7 +18,7 @@
 
   <xs:simpleType name="isbn">
     <xs:restriction base="xs:string">
-      <xs:pattern value="(?=.{13}$)\d{1,5}([- ])\d{1,7}\1\d{1,6}\1(\d|X)$"/>
+      <xs:pattern value="[0-9][-][0-9][0-9][0-9][0-9][0-9][-][0-9][0-9][0-9][-][0-9]"/>
     </xs:restriction>
   </xs:simpleType>
   
