@@ -19,7 +19,7 @@ namespace XMLSchemaVerification
             settings.ValidationEventHandler +=
                 delegate (object sender, ValidationEventArgs e)
                 {
-                    throw new Exception(String.Format("[{0}:{1}] {2}", e.Exception.LineNumber, e.Exception.LinePosition, e.Message));
+                    Console.WriteLine("[{0}:{1}] {2}", e.Exception.LineNumber, e.Exception.LinePosition, e.Message);
                 };
 
             settings.ValidationFlags = settings.ValidationFlags | XmlSchemaValidationFlags.ReportValidationWarnings;
