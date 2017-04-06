@@ -10,3 +10,4 @@ F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\De
 F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Content\Books_wrongDate.xml
 F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Content\Books_wrongGenre.xml
 F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Content\Books_wrongIsbn.xml
+F:\.net mentoring\Hometask\AdvancedXML\BooksLibrary\XMLSchemaVerification\bin\Debug\Content\Books_nonUniqueId.xml

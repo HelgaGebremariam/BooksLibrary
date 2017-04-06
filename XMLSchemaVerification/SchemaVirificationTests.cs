@@ -37,5 +37,13 @@ namespace XMLSchemaVerification
             BooksSchemaVerification sv = new BooksSchemaVerification();
             sv.Check("Content\\Books_wrongIsbn.xml");
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(XmlSchemaValidationException))]
+        public void TestIValidSchema_IfNonUniqueId_IsExceptionThrowing()
+        {
+            BooksSchemaVerification sv = new BooksSchemaVerification();
+            sv.Check("Content\\Books_nonUniqueId.xml");
+        }
     }
 }

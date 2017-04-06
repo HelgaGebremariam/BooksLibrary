@@ -54,15 +54,18 @@
     <Content Include="Content\Books.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Books_nonUniqueId.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Books_wrongDate.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Content>
+    </Content>
     <Content Include="Content\Books_wrongGenre.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Content>
+    </Content>
     <Content Include="Content\Books_wrongIsbn.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Content>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Books.xsd">
