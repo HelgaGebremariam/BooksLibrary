@@ -1,13 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:book="http://library.by/catalog"
-    xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt"
+    xmlns:date="urn:sample">
+  
+    <msxsl:script language="JScript" implements-prefix="date">
+       function today()
+       {
+          var today = new Date();
+          var dd = today.getDate();
+          var mm = today.getMonth()+1; //January is 0!
+          var yyyy = today.getFullYear();
+          return yyyy+ "-" + mm + "-" + dd;
+       } 
+    </msxsl:script> 
   
     <xsl:output method="xml" indent="yes"/>
 
   <xsl:template match="/book:catalog">
+    
     <xsl:element name="feed">
+      
+      <xsl:element name="title">Books Library</xsl:element>
+      
+      <xsl:element name="link">
+        <xsl:attribute name="href">
+          <xsl:value-of select="'http://library.by/catalog'"/>
+        </xsl:attribute>
+      </xsl:element>
+      
+      <xsl:element name="updated">
+        <xsl:value-of select="date:today()"/>
+      </xsl:element>
+      
       <xsl:apply-templates/>
+    
     </xsl:element>
   </xsl:template>
     
