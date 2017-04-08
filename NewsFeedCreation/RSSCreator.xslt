@@ -8,9 +8,7 @@
   <xsl:template match="/book:catalog">
     <xsl:element name="feed">
       <xsl:apply-templates/>
-    
     </xsl:element>
-  
   </xsl:template>
     
   <xsl:template match="//book:book">
@@ -21,9 +19,7 @@
         <xsl:element name="updated">
           <xsl:value-of select="./book:registration_date"/>
         </xsl:element>
-        
-          <xsl:if test="./book:isbn">
-            
+          <xsl:if test="./book:isbn and ./book:genre='Computer'">
             <xsl:element name="link">
               <xsl:attribute name="href">
                 <xsl:value-of select="concat('http://my.safaribooksonline.com/', ./book:isbn)"/>
