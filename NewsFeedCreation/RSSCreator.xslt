@@ -5,7 +5,15 @@
   
     <xsl:output method="xml" indent="yes"/>
 
-    <xsl:template match="//book:book">
+  <xsl:template match="/book:catalog">
+    <xsl:element name="feed">
+      <xsl:apply-templates/>
+    
+    </xsl:element>
+  
+  </xsl:template>
+    
+  <xsl:template match="//book:book">
       <xsl:element name="entry">
         <xsl:element name="title">
           <xsl:value-of select="./book:title"/>
@@ -22,10 +30,8 @@
               </xsl:attribute>
             </xsl:element>
           </xsl:if>
-        
+        </xsl:element>
 
-          
-      </xsl:element>
-    </xsl:template>
+</xsl:template>
 
 </xsl:stylesheet>
