@@ -3,14 +3,15 @@
                 xmlns:book="http://library.by/catalog"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:date="urn:sample"
-                xmlns:ext="http://epam.com/xsl/ext">
+                xmlns:ext="http://library.by/catalog">
 
-  <xsl:output method="xml" indent="yes"/>
+  <xsl:output method="html" indent="yes"/>
 
 
   <xsl:template match="//book:book">
 
-    <xsl:value-of select="ext:AddReportRow(./book:genre, ./book:author, ./book:title, ./book:publish_date, ./book:registration_date)"/>
+    
+    <xsl:value-of disable-output-escaping="yes" select="ext:AddReportRow(./book:genre, ./book:author, ./book:title, ./book:publish_date, ./book:registration_date)"/>
 
   </xsl:template>
 
