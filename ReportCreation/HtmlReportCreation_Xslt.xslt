@@ -16,71 +16,73 @@
   </msxsl:script>
 
   <xsl:template match="//book:catalog">
-    <xsl:element name="html">
+    <html>
 
-      <xsl:element name="head">
-        <xsl:element name="title">
+      <head>
+        <title>
           <xsl:value-of select="concat('Books Library Report ', date:today())"/>
-        </xsl:element>
-      </xsl:element>
+        </title>
+      </head>
 
       <body>
-        <xsl:element name="h1">
+        <h1>
           <xsl:value-of select="concat('Books Library Report ', date:today())"/>
-        </xsl:element>
+        </h1>
 
-        <xsl:element name="h1">
-          <xsl:value-of select="concat('Total (all books): ', count(//book:book))"/>
-        </xsl:element>
         <xsl:for-each select="//book:genre[not(.=preceding::*)]">
           <xsl:call-template name="out_genre">
             <xsl:with-param name="genre_name" select="."></xsl:with-param>
           </xsl:call-template>
         </xsl:for-each>
+
+        <h1>
+          <xsl:value-of select="concat('Total (all books): ', count(//book:book))"/>
+        </h1>
+        
       </body>
 
-    </xsl:element>
+    </html>
 
   </xsl:template>
 
   <xsl:template name="out_genre">
     <xsl:param name="genre_name" />
 
-    <xsl:element name="h1">
+    <h1>
       <xsl:value-of select="$genre_name"/>
-    </xsl:element>
+    </h1>
 
-    <xsl:element name="table">
-      <xsl:element name="tr">
-        <xsl:element name="th">Author</xsl:element>
-        <xsl:element name="th">Name</xsl:element>
-        <xsl:element name="th">Publish Date</xsl:element>
-        <xsl:element name="th">Registration Date</xsl:element>
-      </xsl:element>
-      <xsl:element name="tr">
+    <table>
+      <tr>
+        <th>Author</th>
+        <th>Name</th>
+        <th>Publish Date</th>
+        <th>Registration Date</th>
+      </tr>
+      <tr>
         <xsl:apply-templates select="//book:book[book:genre=$genre_name]"/>
-      </xsl:element>
-    </xsl:element>
+      </tr>
+    </table>
 
-    <xsl:element name="h1">
+    <h1>
       <xsl:value-of select="concat('Total: ', count(//book:book[book:genre=$genre_name]))"/>
-    </xsl:element>
+    </h1>
 
   </xsl:template>
 
   <xsl:template match="//book:book">
-    <xsl:element name="th">
+    <th>
       <xsl:value-of select="./book:author"/>
-    </xsl:element>
-    <xsl:element name="th">
+    </th>
+    <th>
       <xsl:value-of select="./book:title"/>
-    </xsl:element>
-    <xsl:element name="th">
+      </th>
+    <th>
       <xsl:value-of select="./book:publish_date"/>
-    </xsl:element>
-    <xsl:element name="th">
+      </th>
+    <th>
       <xsl:value-of select="./book:registration_date"/>
-    </xsl:element>
+    </th>
   </xsl:template>
 
 </xsl:stylesheet>
