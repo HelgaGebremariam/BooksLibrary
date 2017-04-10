@@ -9,40 +9,41 @@ namespace XMLSchemaVerification
         [TestMethod]
         public void TestValidSchema_AreCorrectResults()
         {
-            BooksSchemaVerification sv = new BooksSchemaVerification();
-            sv.Check("Content\\Books.xml");
+            BooksSchemaVerificator sv = new BooksSchemaVerificator("books.xsd", "http://library.by/catalog");
+            var isValidXml = sv.IsValidXml("Content\\Books.xml");
+            Assert.AreEqual(true, isValidXml);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(XmlSchemaValidationException))]
         public void TestIValidSchema_IfWrongDate_IsExceptionThrowing()
         {
-            BooksSchemaVerification sv = new BooksSchemaVerification();
-            sv.Check("Content\\Books_wrongDate.xml");
+            BooksSchemaVerificator sv = new BooksSchemaVerificator("books.xsd", "http://library.by/catalog");
+            var isValidXml = sv.IsValidXml("Content\\Books_wrongDate.xml");
+            Assert.AreEqual(false, isValidXml);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(XmlSchemaValidationException))]
         public void TestIValidSchema_IfWrongGenre_IsExceptionThrowing()
         {
-            BooksSchemaVerification sv = new BooksSchemaVerification();
-            sv.Check("Content\\Books_wrongGenre.xml");
+            BooksSchemaVerificator sv = new BooksSchemaVerificator("books.xsd", "http://library.by/catalog");
+            var isValidXml = sv.IsValidXml("Content\\Books_wrongGenre.xml");
+            Assert.AreEqual(false, isValidXml);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(XmlSchemaValidationException))]
         public void TestIValidSchema_IfWrongIsbn_IsExceptionThrowing()
         {
-            BooksSchemaVerification sv = new BooksSchemaVerification();
-            sv.Check("Content\\Books_wrongIsbn.xml");
+            BooksSchemaVerificator sv = new BooksSchemaVerificator("books.xsd", "http://library.by/catalog");
+            var isValidXml = sv.IsValidXml("Content\\Books_wrongIsbn.xml");
+            Assert.AreEqual(false, isValidXml);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(XmlSchemaValidationException))]
         public void TestIValidSchema_IfNonUniqueId_IsExceptionThrowing()
         {
-            BooksSchemaVerification sv = new BooksSchemaVerification();
-            sv.Check("Content\\Books_nonUniqueId.xml");
+            BooksSchemaVerificator sv = new BooksSchemaVerificator("books.xsd", "http://library.by/catalog");
+            var isValidXml = sv.IsValidXml("Content\\Books_nonUniqueId.xml");
+            Assert.AreEqual(false, isValidXml);
         }
     }
 }
