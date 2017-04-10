@@ -1,17 +1,39 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 using NLog;
+using System.Xml.Linq;
+using System.Xml.XPath;
+using System.Collections.Generic;
 
 namespace XMLSchemaVerification
 {
+    public class Book
+    {
+        public string Id { get; set;}
+        public string Name { get; set; }
+        public string Author { get; set; }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append("Id: ");
+            sb.AppendLine(Id);
+            sb.Append("Name: ");
+            sb.AppendLine(Name);
+            sb.Append("Author: ");
+            sb.AppendLine(Author);
+            return sb.ToString();
+        }
+    }
+
     public class BooksSchemaVerificator
     {
         string xmlNamespace;
         string xsdPath;
         Logger logger = LogManager.GetCurrentClassLogger();
-        bool isNoErrors;
-
+        List<Tuple<Book, string>> booksWithErrors;
         public BooksSchemaVerificator(string filePath, string xmlNamespace)
         {
             this.xmlNamespace = xmlNamespace;
@@ -20,14 +42,18 @@ namespace XMLSchemaVerification
 
         void settings_ValidationEventHandler(object sender, System.Xml.Schema.ValidationEventArgs e)
         {
-            isNoErrors = false;
             var exception = e.Exception as XmlSchemaValidationException;
             var error = new StringBuilder();
-            
-            var sourceObject = exception.SourceObject as XmlElement;
-            error.AppendLine(e.Message);
-            error.AppendLine(sourceObject.OuterXml);
-            
+            error.AppendLine(exception.Message);
+
+            Book book = GetBookFromXElement(sender as XElement);
+
+            if (book != null)
+            {
+                error.AppendLine(book.ToString());
+                booksWithErrors.Add(Tuple.Create<Book, string>(book, e.Message));
+            }
+
             if (e.Severity == XmlSeverityType.Warning)
             {
                 
@@ -39,27 +65,44 @@ namespace XMLSchemaVerification
             }
         }
 
-        public bool IsValidXml(string xmlPath)
+        public List<Tuple<Book, string>> Validate(string xmlPath)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(xmlPath);
-            if (doc.Schemas.Count == 0)
-            {
-                XmlSchema schema = getSchema(xsdPath);
-                doc.Schemas.Add(schema);
-            }
-            isNoErrors = true;
-            doc.Validate(settings_ValidationEventHandler);
-            return isNoErrors;
+            var xDocument = XDocument.Load(xmlPath);
 
+            var schemas = new XmlSchemaSet();
+            schemas.Add(xmlNamespace, "books.xsd");
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(new NameTable());
+            nsmgr.AddNamespace("x", xmlNamespace);
+            booksWithErrors = new List<Tuple<Book, string>>();
+            xDocument.Validate(schemas, settings_ValidationEventHandler);
+            return booksWithErrors;
         }
 
-        private XmlSchema getSchema(string filePath)
+        private Book GetBookFromXElement(XElement element)
         {
-            XmlSchemaSet xs = new XmlSchemaSet();
-            XmlSchema schema;
-            schema = xs.Add(xmlNamespace, filePath);
-            return schema;
+            XElement parentBook = element;
+            if (element.Name.LocalName.ToLowerInvariant() != "book")
+            {
+                parentBook = element.Parent;
+
+            }
+            Book book = new Book();
+
+            foreach(XAttribute attribute in parentBook.Attributes())
+            {
+                if (attribute.Name.LocalName == "id")
+                    book.Id = attribute.Value;
+            }
+
+            foreach (XElement node in parentBook.Nodes())
+            {
+                if (node.Name.LocalName == "title")
+                    book.Name = node.Value;
+                if (node.Name.LocalName == "author")
+                    book.Author = node.Value;
+            }
+
+            return book;
         }
     }
 }
