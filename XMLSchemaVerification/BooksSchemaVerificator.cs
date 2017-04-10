@@ -20,9 +20,9 @@ namespace XMLSchemaVerification
             var sb = new StringBuilder();
             sb.Append("Id: ");
             sb.AppendLine(Id);
-            sb.Append("Name: ");
+            sb.Append(" Name: ");
             sb.AppendLine(Name);
-            sb.Append("Author: ");
+            sb.Append(" Author: ");
             sb.AppendLine(Author);
             return sb.ToString();
         }

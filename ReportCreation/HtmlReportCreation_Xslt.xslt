@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:book="http://library.by/catalog"
                 xmlns:msxsl="urn:schemas-microsoft-com:xslt"
                 xmlns:date="urn:sample"
-                xmlns:ext="http://library.by/catalog">
+                xmlns:ext="http://library.by/catalog"
+                xmlns:fn="http://www.w3.org/2005/xpath-functions">
 
   <xsl:output method="html" indent="yes"/>
 
@@ -23,34 +24,23 @@
         </xsl:element>
       </xsl:element>
 
-      <xsl:element name="body">
+      <body>
         <xsl:element name="h1">
           <xsl:value-of select="concat('Books Library Report ', date:today())"/>
         </xsl:element>
 
-        <xsl:call-template name="out_genre">
-          <xsl:with-param name="genre_name">Computer</xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="out_genre">
-          <xsl:with-param name="genre_name">Fantasy</xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="out_genre">
-          <xsl:with-param name="genre_name">Romance</xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="out_genre">
-          <xsl:with-param name="genre_name">Horror</xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="out_genre">
-          <xsl:with-param name="genre_name">Science Fiction</xsl:with-param>
-        </xsl:call-template>
-
         <xsl:element name="h1">
           <xsl:value-of select="concat('Total (all books): ', count(//book:book))"/>
         </xsl:element>
-
-      </xsl:element>
+        <xsl:for-each select="//book:genre[not(.=preceding::*)]">
+          <xsl:call-template name="out_genre">
+            <xsl:with-param name="genre_name" select="."></xsl:with-param>
+          </xsl:call-template>
+        </xsl:for-each>
+      </body>
 
     </xsl:element>
+
   </xsl:template>
 
   <xsl:template name="out_genre">
